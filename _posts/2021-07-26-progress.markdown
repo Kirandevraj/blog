@@ -1,0 +1,35 @@
+---
+layout: "post"
+title: "Progress"
+image: /assets/img/send.png
+---
+
+The [code] ran until around 50k address count.
+
+{% highlight ruby %}
+
+bitcoin-cli getwalletinfo
+{
+  "walletname": "regtest_wallet_1",
+  "walletversion": 169900,
+  "format": "sqlite",
+  "balance": 219.03869418,
+  "unconfirmed_balance": 0.00000000,
+  "immature_balance": 0.00056636,
+  "txcount": 87669,
+  "keypoolsize": 3000,
+  "keypoolsize_hd_internal": 3000,
+  "paytxfee": 0.00000000,
+  "private_keys_enabled": true,
+  "avoid_reuse": false,
+  "scanning": false,
+  "descriptors": true
+}
+
+{% endhighlight %}
+
+The corresponding plot is
+
+![]({{ page.image | relative_url }})
+
+[code]: https://github.com/Kirandevraj/summerofbitcoin/blob/master/create_multiple_addresses.py
