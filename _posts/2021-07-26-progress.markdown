@@ -28,8 +28,10 @@ bitcoin-cli getwalletinfo
 
 {% endhighlight %}
 
-The corresponding plot is
+The corresponding plot is.
 
 ![]({{ page.image | relative_url }})
+
+The average duration of the last 10,000 send transaction is 2.57 seconds
 
 [code]: https://github.com/Kirandevraj/summerofbitcoin/blob/master/create_multiple_addresses.py
