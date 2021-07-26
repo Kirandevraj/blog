@@ -2,6 +2,7 @@
 layout: "post"
 title: "Progress"
 image: /assets/img/send.png
+svg: /assets/svg/bitcoin.svg
 ---
 
 The [code] ran until around 50k address count.
@@ -33,5 +34,11 @@ The corresponding plot is.
 ![]({{ page.image | relative_url }})
 
 The average duration of the last 10,000 send transaction is 2.57 seconds
+
+The flame graph for a single send transaction of a wallet containing 50k addresses is
+
+![]({{ page.svg | relative_url }})
+
+The above flame graph is captured by 5 seconds. The send operation took 2.8 seconds.
 
 [code]: https://github.com/Kirandevraj/summerofbitcoin/blob/master/create_multiple_addresses.py
