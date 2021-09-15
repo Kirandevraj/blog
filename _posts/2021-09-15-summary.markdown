@@ -1,0 +1,50 @@
+---
+layout: "post"
+title: "Summary of Work Done in Summer Of Bitcoin"
+image_analysis1: /assets/img/send.png
+image_analysis2: /assets/img/dbscan1.png
+---
+
+# __Analysis of Descriptor wallets__
+
+We begin by analyzing the performance of the Descriptor wallet. We measured the time taken for the send operation
+in a regtest mode while incrementing the number of addresses in the wallet. We observed the performance of the
+wallet is robust even with 50k addresses.
+
+![]({{ page.image_analysis1 | relative_url }})
+
+We moved to measure the performance of the rescanblockchain command to see how fast scanning occurs in the
+blockchain when the number of addresses is around 100k. We observed that the duration only increases by 5
+seconds even when the wallet holds an enormous address. The operation is to scan 1000 blocks for transactions
+related to the addresses in the wallet in the mainnet.
+
+![]({{ page.image_analysis2 | relative_url }})
+
+
+# __Investigated an issue while Rolling Forward and possible development__
+
+If the chain state is not properly written into the disk, the Bitcoin starts verifying the blocks once again
+from the beginning to arrive at the right UTXO set. This usually happens during the initial block download
+when the Bitcoin was not closed properly. PR:17487 addresses this issue where the chain state is written
+into the disk once the IBD is complete.
+
+When the chain state is not written correctly, the system will start verifying the blocks again. This will be
+shown as “Rolling Forward” while starting up the Bitcoin. Here you will not be able to stop the program,
+you will have to kill the process to stop the program, and when you start again, it will start processing from
+the first block to obtain the UTXO set.
+
+Hence we investigated how to make “bitcoin-cli stop” to write the chain state and stop the program in the
+rolling forward situation.
+
+# __PR’s Reviewed__
+
+| PR | Description |
+| :--: | :----------- |
+| 20664 | Add scanblocks RPC call |
+| 22543 | test: Use MiniWallet in mempool_limit.py |
+| 17487 | coins: allow write to disk without cache drop |
+| 21526 | validation: UpdateTip/CheckBlockIndex assumeutxo support |
+	
+| Issue | Description |
+| :--: | :----------- |
+| 22634 | v22.0 testing
